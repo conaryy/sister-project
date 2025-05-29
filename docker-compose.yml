@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # ─── BACKEND WEB ─────────────────────────
+  web1:
+    image: nginx:alpine
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    networks: [monitoring]
+
+  web2:
+    image: nginx:alpine
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    networks: [monitoring]
+
+  # ─── LOAD BALANCER ───────────────────────
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on: [web1, web2]
+    ports:
+      - "8080:80"      # host 8080 → container 80
+    networks: [monitoring]
+
+  # ─── METRICS EXPORTER ────────────────────
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    command: -nginx.scrape-uri=http://nginx/status
+    depends_on: [nginx]
+    ports:
+      - "9113:9113"
+    networks: [monitoring]
+
+  # ─── PROMETHEUS ──────────────────────────
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    networks: [monitoring]
+
+
+networks:
+  monitoring:
+    driver: bridge
