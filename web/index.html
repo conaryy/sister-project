@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hello from NGINX LB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello from NGINX LB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .server-info {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ffeb3b;
+        }
+    </style>
 </head>
 <body>
-  <h1>WEB LOAD BALANCER KELOMPOK 8</h1>
-  <p>INPO LIBUR</p>
+    <div class="container">
+        <h1>🚀 WEB LOAD BALANCER KELOMPOK 8</h1>
+        <div class="info">
+            <p><strong>📚 INPO LIBUR</strong></p>
+            <p>Load Balancer is working!</p>
+        </div>
+        
+        <div class="info">
+            <p class="server-info">🖥️ Server Instance Ready</p>
+            <p>Monitoring: Prometheus + Grafana</p>
+            <p>Load Balancer: Nginx</p>
+        </div>
+        
+        <div class="info">
+            <p><strong>📊 Monitoring URLs:</strong></p>
+            <p>🔍 Prometheus: <a href="http://localhost:9090" style="color: #ffeb3b;">http://localhost:9090</a></p>
+            <p>📈 Grafana: <a href="http://localhost:3000" style="color: #ffeb3b;">http://localhost:3000</a></p>
+            <p>⚖️ Load Balancer: <a href="http://localhost:8080" style="color: #ffeb3b;">http://localhost:8080</a></p>
+        </div>
+    </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const timestamp = new Date().toLocaleString();
+            const timestampDiv = document.createElement('div');
+            timestampDiv.innerHTML = `<small>⏰ Loaded at: ${timestamp}</small>`;
+            timestampDiv.style.marginTop = '20px';
+            timestampDiv.style.opacity = '0.7';
+            document.querySelector('.container').appendChild(timestampDiv);
+        });
+    </script>
 </body>
 </html>

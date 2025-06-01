@@ -1,39 +1,69 @@
 version: '3.8'
 
 services:
-  # ─── BACKEND WEB ─────────────────────────
+  # ─── BACKEND WEB SERVERS ───────────────────────
   web1:
     image: nginx:alpine
     volumes:
       - ./web:/usr/share/nginx/html:ro
+      - ./web1-config:/etc/nginx/conf.d:ro
     networks: [monitoring]
+    container_name: web1
 
   web2:
     image: nginx:alpine
     volumes:
       - ./web:/usr/share/nginx/html:ro
+      - ./web2-config:/etc/nginx/conf.d:ro
     networks: [monitoring]
+    container_name: web2
 
-  # ─── LOAD BALANCER ───────────────────────
+  # ─── LOAD BALANCER ─────────────────────────────
   nginx:
     image: nginx:alpine
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on: [web1, web2]
     ports:
-      - "8080:80"      # host 8080 → container 80
+      - "8080:80"
     networks: [monitoring]
+    container_name: nginx-lb
 
-  # ─── METRICS EXPORTER ────────────────────
+  # ─── METRICS EXPORTERS ─────────────────────────
   nginx-exporter:
     image: nginx/nginx-prometheus-exporter:latest
-    command: -nginx.scrape-uri=http://nginx/status
+    command: 
+      - -nginx.scrape-uri=http://nginx/status
+      - -web.listen-address=:9113
     depends_on: [nginx]
     ports:
       - "9113:9113"
     networks: [monitoring]
+    container_name: nginx-exporter
 
-  # ─── PROMETHEUS ──────────────────────────
+  web1-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    command: 
+      - -nginx.scrape-uri=http://web1/nginx_status
+      - -web.listen-address=:9113
+    depends_on: [web1]
+    ports:
+      - "9114:9113"
+    networks: [monitoring]
+    container_name: web1-exporter
+
+  web2-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    command: 
+      - -nginx.scrape-uri=http://web2/nginx_status
+      - -web.listen-address=:9113
+    depends_on: [web2]
+    ports:
+      - "9115:9113"
+    networks: [monitoring]
+    container_name: web2-exporter
+
+  # ─── PROMETHEUS ────────────────────────────────
   prometheus:
     image: prom/prometheus:latest
     volumes:
@@ -41,7 +71,22 @@ services:
     ports:
       - "9090:9090"
     networks: [monitoring]
+    container_name: prometheus
 
+  # ─── GRAFANA ───────────────────────────────────
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    networks: [monitoring]
+    container_name: grafana
+
+volumes:
+  grafana-storage:
 
 networks:
   monitoring:
