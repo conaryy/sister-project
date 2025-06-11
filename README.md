@@ -51,8 +51,6 @@ sister_project_update/
 │   └── default.conf            # Konfigurasi web server 1
 ├── web2-config/
 │   └── default.conf            # Konfigurasi web server 2
-├── test.sh                     # Script testing
-└── Setup Instructions & File Structure.pdf
 ```
 
 ## ⚙️ Tahapan Konfigurasi
