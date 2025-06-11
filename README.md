@@ -281,6 +281,11 @@ Sistem dilengkapi dengan health checks:
 ## 👥 Tim Pengembang
 
 **Kelompok 8** - Web Load Balancer Monitoring Project
+- Novaldi Bilqi Akbar Santoso 		(2423600038)
+- Farhan Fawwaz Saputra 			    (2423600048)
+- Angga Abdul Majid	 			        (2423600050)
+- R. Gusti Aryakusuma Dewa Wijaya (2423600058)
+
 
 ## 📞 Support
 
