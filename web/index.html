@@ -1,74 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello from NGINX LB</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0;
-            padding: 40px;
-            color: white;
-            text-align: center;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        .server-info {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #ffeb3b;
-        }
-    </style>
+    <title>Web Load Balancer Kelompok 8</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🚀 WEB LOAD BALANCER KELOMPOK 8</h1>
-        <div class="info">
-            <p><strong>📚 INPO LIBUR</strong></p>
-            <p>Load Balancer is working!</p>
+    <div class="dashboard">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
         </div>
-        
-        <div class="info">
-            <p class="server-info">🖥️ Server Instance Ready</p>
-            <p>Monitoring: Prometheus + Grafana</p>
-            <p>Load Balancer: Nginx</p>
+
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">
+                WEB LOAD BALANCER KELOMPOK 8
+            </h1>
+            <div class="status-badge">
+                <span class="dot"></span>
+                Load Balancer Aktif
+            </div>
         </div>
-        
-        <div class="info">
-            <p><strong>📊 Monitoring URLs:</strong></p>
-            <p>🔍 Prometheus: <a href="http://localhost:9090" style="color: #ffeb3b;">http://localhost:9090</a></p>
-            <p>📈 Grafana: <a href="http://localhost:3000" style="color: #ffeb3b;">http://localhost:3000</a></p>
-            <p>⚖️ Load Balancer: <a href="http://localhost:8080" style="color: #ffeb3b;">http://localhost:8080</a></p>
+
+        <div class="dashboard-content">
+            <div class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fas fa-info-circle"></i>
+                    INFORMASI SISTEM
+                </h2>
+                <p><i class="fas fa-server"></i> Load Balancer berfungsi dengan sempurna!</p>
+            </div>
+
+            <div class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fas fa-cogs"></i>
+                    SERVER INSTANCE
+                </h2>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <span class="metric-value" id="request-server-1">--</span>
+                        <div class="metric-label">Request Server 1</div>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value" id="request-server-2">--</span>
+                        <div class="metric-label">Request Server 2</div>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value" id="active-servers">--</span>
+                        <div class="metric-label">Server Aktif</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fas fa-chart-line"></i>
+                    STACK MONITORING
+                </h2>
+                <ul class="url-list">
+                    <li class="url-item">
+                        <i class="fas fa-search url-icon"></i>
+                        <span class="url-text">Monitoring: Prometheus + Grafana</span>
+                    </li>
+                    <li class="url-item">
+                        <i class="fas fa-balance-scale url-icon"></i>
+                        <span class="url-text">Load Balancer: Nginx</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fas fa-link"></i>
+                    URL MONITORING
+                </h2>
+                <ul class="url-list">
+                    <li class="url-item">
+                        <i class="fas fa-search url-icon"></i>
+                        <span class="url-text">Prometheus</span>
+                        <a href="http://localhost:9090" class="url-link" target="_blank">
+                            http://localhost:9090
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                    <li class="url-item">
+                        <i class="fas fa-chart-line url-icon"></i>
+                        <span class="url-text">Grafana</span>
+                        <a href="http://localhost:3000" class="url-link" target="_blank">
+                            http://localhost:3000
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                    <li class="url-item">
+                        <i class="fas fa-balance-scale url-icon"></i>
+                        <span class="url-text">Load Balancer</span>
+                        <a href="http://localhost:8080" class="url-link" target="_blank">
+                            http://localhost:8080
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2 class="info-card-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    SERVER STATUS
+                </h2>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <span class="metric-value" id="web1-status">--</span>
+                        <div class="metric-label">Web 1</div>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value" id="web2-status">--</span>
+                        <div class="metric-label">Web 2</div>
+                    </div>
+                </div>
+                <div id="api-status" style="margin-top: 1rem; padding: 1rem; border-radius: 8px; background: rgba(255, 255, 255, 0.05); display: none;"></div>
+            </div>
+
+            <div class="timestamp" id="timestamp">
+                <i class="far fa-clock"></i>
+                <span>Mengambil data...</span>
+            </div>
         </div>
     </div>
 
     <script>
-        
         document.addEventListener('DOMContentLoaded', function() {
-            const timestamp = new Date().toLocaleString();
-            const timestampDiv = document.createElement('div');
-            timestampDiv.innerHTML = `<small>⏰ Loaded at: ${timestamp}</small>`;
-            timestampDiv.style.marginTop = '20px';
-            timestampDiv.style.opacity = '0.7';
-            document.querySelector('.container').appendChild(timestampDiv);
+            function updateTimestamp() {
+                const now = new Date();
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                const timestamp = document.getElementById('timestamp');
+                if (timestamp) {
+                    timestamp.innerHTML = `<i class="far fa-clock"></i> Muat pada: ${now.toLocaleString('id-ID', options)}`;
+                }
+            }
+
+            updateTimestamp();
+            setInterval(updateTimestamp, 1000);
+
+            const serversElement = document.getElementById('active-servers');
+            const apiStatus = document.getElementById('api-status');
+
+            // Interval to update active server count (based on web1/web2 status elements)
+            setInterval(() => {
+                const web1StatusElement = document.getElementById('web1-status');
+                const web2StatusElement = document.getElementById('web2-status');
+
+                if (serversElement && web1StatusElement && web2StatusElement) {
+                    const web1Status = web1StatusElement.textContent;
+                    const web2Status = web2StatusElement.textContent;
+
+                    let activeServers = 0;
+                    if (web1Status === 'Aktif') activeServers++;
+                    if (web2Status === 'Aktif') activeServers++;
+
+                    serversElement.textContent = activeServers.toString();
+                }
+            }, 3000); // This interval can be aligned with other metric updates if desired
+
+
+            // Generic function to fetch Prometheus data for request counts
+            async function fetchRequestData(serverJobName, elementId, label) {
+                const query = `increase(nginx_http_requests_total{job="${serverJobName}"}[1m]) - 12`;
+                const url = `http://localhost:9090/api/v1/query?query=${encodeURIComponent(query)}`;
+                const targetElement = document.getElementById(elementId);
+
+                if (!targetElement) {
+                    console.error(`Element with ID ${elementId} not found.`);
+                    return;
+                }
+                
+                let currentApiMessage = apiStatus && apiStatus.textContent ? apiStatus.textContent : "";
+                let successMessage = `Informasi ${label} berhasil didapatkan.`;
+                let failureMessagePrefix = `Gagal mendapatkan informasi ${label}`;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (data.status === "success" && data.data.result && data.data.result.length > 0 && data.data.result[0].value && data.data.result[0].value.length > 1) {
+                        let value = parseFloat(data.data.result[0].value[1]).toFixed(2);
+                        targetElement.textContent = value;
+
+                        if (apiStatus) {
+                            apiStatus.style.display = 'block';
+                            apiStatus.style.color = 'var(--success-color, green)';
+                            // Append success message if not already there for this label
+                            if (!currentApiMessage.includes(successMessage)) {
+                                apiStatus.textContent = (currentApiMessage ? currentApiMessage + " " : "") + successMessage;
+                            }
+                        }
+                    } else {
+                        targetElement.textContent = 'N/A';
+                        throw new Error("No data or invalid data structure found");
+                    }
+                } catch (error) {
+                    console.error(`Error fetching Prometheus data for ${label}: ${error}`);
+                    targetElement.textContent = 'Error';
+                    if (apiStatus) {
+                        apiStatus.style.display = 'block';
+                        apiStatus.style.color = 'var(--danger-color, red)';
+                        let specificFailureMessage = `${failureMessagePrefix}: ${error.message}.`;
+                        // Append failure message if not already there for this label
+                        if (!currentApiMessage.includes(failureMessagePrefix)) {
+                             apiStatus.textContent = (currentApiMessage ? currentApiMessage + " " : "") + specificFailureMessage;
+                        } else { // If a general failure message for this label is already there, update it
+                            apiStatus.textContent = apiStatus.textContent.replace(new RegExp(failureMessagePrefix + ".*"), specificFailureMessage);
+                        }
+                    }
+                }
+            }
+
+
+            async function fetchPrometheusServerStatus(query, elementId, label) {
+                const url = `http://localhost:9090/api/v1/query?query=${encodeURIComponent(query)}`;
+                const targetElement = document.getElementById(elementId);
+
+                if (!targetElement) {
+                    console.error(`Element with ID ${elementId} not found.`);
+                    return;
+                }
+                
+                let currentApiMessage = apiStatus && apiStatus.textContent ? apiStatus.textContent : "";
+                let successMessage = `Status ${label} berhasil didapatkan.`;
+                let failureMessagePrefix = `Gagal mendapatkan status ${label}`;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (data.status === "success" && data.data.result && data.data.result.length > 0 && data.data.result[0].value && data.data.result[0].value.length > 1) {
+                        let value = parseFloat(data.data.result[0].value[1]);
+                        targetElement.textContent = value > 0 ? 'Aktif' : 'Tidak Aktif';
+                        
+                        if (apiStatus) {
+                            apiStatus.style.display = 'block';
+                            apiStatus.style.color = 'var(--success-color, green)';
+                             if (!currentApiMessage.includes(successMessage)) {
+                                apiStatus.textContent = (currentApiMessage ? currentApiMessage + " " : "") + successMessage;
+                            }
+                        }
+                    } else {
+                        targetElement.textContent = 'N/A';
+                        throw new Error(`No data found for ${label}`);
+                    }
+                } catch (error) {
+                    console.error(`Error fetching Prometheus data for ${label}: ${error}`);
+                    targetElement.textContent = 'Error';
+                    if (apiStatus) {
+                        apiStatus.style.display = 'block';
+                        apiStatus.style.color = 'var(--danger-color, red)';
+                        let specificFailureMessage = `${failureMessagePrefix}: ${error.message}.`;
+                        if (!currentApiMessage.includes(failureMessagePrefix)) {
+                             apiStatus.textContent = (currentApiMessage ? currentApiMessage + " " : "") + specificFailureMessage;
+                        } else {
+                            apiStatus.textContent = apiStatus.textContent.replace(new RegExp(failureMessagePrefix + ".*"), specificFailureMessage);
+                        }
+                    }
+                }
+            }
+
+            function clearApiStatusMessage() {
+                if (apiStatus) {
+                    apiStatus.textContent = "";
+                    // apiStatus.style.display = 'none'; // Optionally hide it completely
+                }
+            }
+
+            async function fetchAllMetrics() {
+                clearApiStatusMessage(); // Clear previous messages before new fetches
+                await fetchRequestData('web1-server', 'request-server-1', 'Request Server 1');
+                await fetchRequestData('web2-server', 'request-server-2', 'Request Server 2');
+                await fetchPrometheusServerStatus('nginx_up{job="web1-server"}', 'web1-status', 'Web 1');
+                await fetchPrometheusServerStatus('nginx_up{job="web2-server"}', 'web2-status', 'Web 2');
+            }
+
+            // Initial fetch
+            fetchAllMetrics();
+
+            // Fetch data at intervals
+            // Fetch all metrics together to update the apiStatus message more cohesively
+            setInterval(fetchAllMetrics, 5000); // Adjust interval as needed, e.g., 5 seconds
         });
     </script>
 </body>
